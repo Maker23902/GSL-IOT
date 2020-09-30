@@ -31,7 +31,7 @@
          <p><span>
            <!-- react-text: 576 -->您还没有任何网关
            <!-- /react-text --></span></p>
-         <p><a href="#/layout/example/register"><span>
+         <p><a href="#/layout/example/gateway_reg"><span>
             <!-- react-text: 580 -->开始注册第一个网关！
             <!-- /react-text --></span></a></p>
         </div>
