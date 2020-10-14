@@ -2,9 +2,9 @@
 <div id="app">
     <div class="text">
         <h1 style="font-size: 1.3em; color: #4a4a4a; line-height: 3em">
-            凌鹰科技物联网后台管理系统
+            飞鹿科技物联网后台管理系统
         </h1>
-        <p>欢迎进入凌鹰物联网开发者社区平台的控制台。</p>
+        <p>欢迎进入飞鹿物联网开发者社区平台的控制台。</p>
         <p style="
           font-size: 14px;
           font-family: lato, helvetica, -apple-system, sans-serif;
@@ -47,6 +47,7 @@
             </div>
         </el-col>
     </el-row>
+    <el-button type="primary" @click="testlogin"> 登录LoraServer</el-button>
     <el-footer class="_2M0b-rFPSl">
         <span>
             用户就是我们的网络，让我们一起建设物联网开发者社区-
@@ -55,7 +56,28 @@
     </el-footer>
 </div>
 </template>
-
+<script>
+import { loraServerlogin } from "@/api/user";
+export default {
+    data (){
+       return {
+            jwt:'',
+            loginForm: {
+                username: "admin",
+                password: "admin",
+            },
+       }
+    },
+    methods :{
+        async testlogin (){
+            await loraServerlogin(this.loginForm).then((ele) => {
+                this.jwt = ele.jwt;
+                this.$confirm('确认关闭？'+this.jwt);
+            });
+        }
+    }
+}
+</script>
 <style>
 .text {
     color: #828282;

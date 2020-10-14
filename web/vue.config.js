@@ -28,7 +28,14 @@ module.exports = {
                 pathRewrite: { // 修改路径数据
                     ['^' + process.env.VUE_APP_BASE_API]: '' // 举例 '^/api:""' 把路径中的/api字符串删除
                 }
-            }
+            },
+            [process.env.VUE_APP_LSBASE_API]: { //需要代理的路径   例如 '/api'
+                target: `http://feilukeji.cn/api/chripstack/api`, //代理到 目标路径
+                changeOrigin: true,
+                pathRewrite: { // 修改路径数据
+                    ['^' + process.env.VUE_APP_LSBASE_API]: '' // 举例 '^/api:""' 把路径中的/api字符串删除
+                }
+            },
         },
     },
     configureWebpack: {

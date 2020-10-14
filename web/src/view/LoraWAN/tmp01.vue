@@ -33,6 +33,37 @@
                         </p>
                     </div>
                 </ul>
+                  <el-table :data="tableData" style="width: 100% ;cursor: pointer;" :show-header="false" @row-click="openDetails" > 
+                    <el-table-column>
+                       <template slot-scope="scope">
+                            <el-popover trigger="hover" placement="top">
+                            <p>应用: {{ scope.row.name }}</p>
+                            <p>EUI: {{ scope.row.address }}</p>
+                            <div slot="reference" class="name-wrapper">
+                                <el-tag size="medium" type="warning">{{ scope.row.date }}</el-tag>
+                            </div>
+                            </el-popover>
+                        </template> 
+                    </el-table-column>
+                    <el-table-column width="180">
+                        <template slot-scope="scope">
+                            <i class="el-icon-time"></i>
+                            <span style="margin-left: 10px">{{ scope.row.name }}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column width="180">
+                        <template slot-scope="scope">
+                            <el-popover trigger="hover" placement="top">
+                            <p>应用: {{ scope.row.name }}</p>
+                            <p>EUI: {{ scope.row.address }}</p>
+                            <div slot="reference" class="name-wrapper">
+                                <el-tag size="medium" type="info">{{ scope.row.address }}</el-tag>
+                            </div>
+                            </el-popover>
+                        </template> 
+                    </el-table-column>
+                  </el-table> 
+                  <li class="_1XoAvrFvz4 ZgDgoTQRLA"><a href="/applications/43234422"><span class="_2N2JjmChgH"><span class="_3p_L113cuP _1fFYBdB1gh">43234422</span><span class="_2FS-ha9L4W">534</span></span><span class="CEYHrbbxSt"><span class="_4sRu7dF5_f">ttn-handler-eu</span><span class="_3MHekzV0VD _3p_L113cuP undefined _3h8g15tIBJ"><span class=""><span class="_2UzYGsv2RA">70</span><span class="_2UzYGsv2RA">B3</span><span class="_2UzYGsv2RA">D5</span><span class="_2UzYGsv2RA">7E</span><span class="_2UzYGsv2RA">D0</span><span class="_2UzYGsv2RA">03</span><span class="_2UzYGsv2RA">63</span><span class="_2UzYGsv2RA">3B</span></span></span></span></a></li> 
             </div>
         </el-main>
         <el-footer class="_2M0b-rFPSl">
@@ -48,11 +79,70 @@
 
 <script>
 export default {
-    
+    data () {
+        return {
+           tableData: [{
+          date: '2016-05-02',
+          name: 'vttn-handler-eu',
+          address: '70b37x9b0dc7e65f8d'
+        }, {
+          date: '2016-05-04',
+          name: 'ttn-handler-eu',
+          address: '70b37x9b0dc7e65f8d'
+        }, {
+          date: '2016-05-01',
+          name: 'ttn-handler-eu',
+          address: '70b37x9b0dc7e65f8d'
+        }, {
+          date: '2016-05-03',
+          name: 'ttn-handler-eu',
+          address: '70b37x9b0dc7e65f8d'
+        }, {
+          date: '2016-05-04',
+          name: 'ttn-handler-eu',
+          address: '70b37x9b0dc7e65f8d'
+        }, {
+          date: '2016-05-01',
+          name: 'ttn-handler-eu',
+          address: '70b37x9b0dc7e65f8d'
+        }, {
+          date: '2016-05-03',
+          name: 'ttn-handler-eu',
+          address: '70b37x9b0dc7e65f8d'
+        }, {
+          date: '2016-05-04',
+          name: 'ttn-handler-eu',
+          address: '70b37x9b0dc7e65f8d'
+        }, {
+          date: '2016-05-01',
+          name: 'ttn-handler-eu',
+          address: '70b37x9b0dc7e65f8d'
+        }, {
+          date: '2016-05-03',
+          name: 'ttn-handler-eu',
+          address: '70b37x9b0dc7e65f8d'
+        }, {
+          date: '2016-05-04',
+          name: 'ttn-handler-eu',
+          address: '70b37x9b0dc7e65f8d'
+        }]
+        }       
+    },
+    methods :{
+        openDetails (row) {
+        //具体操作 
+         this.$confirm('确认关闭？')     
+    }
+    }   
 }
 </script>
 
 <style>
+#app1{
+    height: 100%;
+    overflow: auto;
+}
+
 ::-moz-focus-inner {
     border: 0
 }

@@ -161,7 +161,7 @@ export default {
         this.picPath = ele.data.picPath;
         this.loginForm.captchaId = ele.data.captchaId;
       });
-    },
+    }
   },
 };
 </script>

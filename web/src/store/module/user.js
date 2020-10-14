@@ -11,6 +11,7 @@ export const user = {
             authority: "",
         },
         token: "",
+        LStoken: "",  //LoraServer token
     },
     mutations: {
         setUserInfo(state, userInfo) {
@@ -20,6 +21,9 @@ export const user = {
         setToken(state, token) {
             // 这里的 `state` 对象是模块的局部状态
             state.token = token
+        },
+        SetLStoken(state,token){
+            state.LStoken=token
         },
         LoginOut(state) {
             state.userInfo = {}
@@ -62,6 +66,9 @@ export const user = {
         token(state) {
             return state.token
         },
+        LStoken(state){
+            return state.LStoken
+        }
 
     }
 }

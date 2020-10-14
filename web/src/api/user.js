@@ -1,4 +1,5 @@
 import service from '@/utils/request'
+import loraServerService from '@/utils/lorarequest'
 
 // @Summary 用户登录
 // @Produce  application/json
@@ -7,6 +8,18 @@ import service from '@/utils/request'
 export const login = (data) => {
     return service({
         url: "/base/login",
+        method: 'post',
+        data: data
+    })
+}
+
+// @Summary loraServer登录
+// @Produce  application/json
+// @Param data body {username:"string",password:"string"}
+// @Router /base/login [post]
+export const loraServerlogin = (data) => {
+    return loraServerService({
+        url: "/internal/login",
         method: 'post',
         data: data
     })
