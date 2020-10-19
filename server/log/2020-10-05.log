@@ -1,8 +1,0 @@
-[GIN-VUE-ADMIN]2020/10/05 - 16:04:48.937	[31merror[0m	register table failed	{"err": "Error 1067: Invalid default value for 'nick_name'"}
-[GIN-VUE-ADMIN]2020/10/05 - 16:23:40.688	[31merror[0m	register table failed	{"err": "Error 1067: Invalid default value for 'nick_name'"}
-[GIN-VUE-ADMIN]2020/10/05 - 16:33:14.682	[34minfo[0m	register table success
-[GIN-VUE-ADMIN]2020/10/05 - 16:33:18.237	[34minfo[0m	use middleware logger
-[GIN-VUE-ADMIN]2020/10/05 - 16:33:18.238	[34minfo[0m	use middleware cors
-[GIN-VUE-ADMIN]2020/10/05 - 16:33:18.238	[34minfo[0m	register swagger handler
-[GIN-VUE-ADMIN]2020/10/05 - 16:33:18.354	[34minfo[0m	router register success
-[GIN-VUE-ADMIN]2020/10/05 - 16:33:18.357	[34minfo[0m	server run success on 	{"address": ":8888"}
