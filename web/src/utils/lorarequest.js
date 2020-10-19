@@ -62,10 +62,16 @@ loraServerService.interceptors.request.use(
 loraServerService.interceptors.response.use(
     response => {
         closeLoading()
-        if (response.headers["new-token"]) {
-            store.commit('user/setToken', response.headers["new-token"])
+        // if(response.data.code === undefined){
+        //     console.log(response.data);
+        //     return response.data
+        // }
+        if (response.data["jwt"]) {
+            store.commit('user/SetLStoken', response.data["jwt"])
         }
-        if (response.data.code == 0 || response.headers.success === "true") {
+        if (response.data.code === undefined || response.headers.success === "true") {
+            var tmp = store.getters['user/LStoken']
+            console.log("111------"+tmp)
             return response.data
         } else {
             Message({
@@ -86,7 +92,7 @@ loraServerService.interceptors.response.use(
             message: error,
             type: 'error'
         })
-        return Promise.reject(error)
+        return Promise.reject(error).catch(error)
     }
 )
 

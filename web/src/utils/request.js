@@ -57,9 +57,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     response => {
         closeLoading()
-            if(response.data.code === undefined){
-                return response.data
-            }
+            
         if (response.headers["new-token"]) {
             store.commit('user/setToken', response.headers["new-token"])
         }
