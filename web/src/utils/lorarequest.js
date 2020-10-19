@@ -92,7 +92,7 @@ loraServerService.interceptors.response.use(
             message: error,
             type: 'error'
         })
-        return Promise.reject(error).catch(error)
+        return Promise.reject(error).catch((e)=>{})
     }
 )
 
