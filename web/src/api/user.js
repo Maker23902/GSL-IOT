@@ -25,6 +25,18 @@ export const loraServerlogin = (data) => {
     })
 }
 
+// @Summary 获取应用
+// @Produce  application/json
+// @Param data body {limit}
+// @Router /api/applications [get]
+export const loraServerGetApp = (data) => {
+    return loraServerService({
+        url: "/api/applications",
+        method: 'get',
+        params: data   //query传参
+    })
+}
+
 // @Summary 获取验证码
 // @Produce  application/json
 // @Param data body {username:"string",password:"string"}

@@ -41,7 +41,8 @@ loraServerService.interceptors.request.use(
 
         config.headers = {
             'Content-Type': 'application/json',
-            'x-token': token,
+            //'x-token': token,
+            'Grpc-Metadata-Authorization':token,
             // 'x-user-id': user.ID
         }
         return config;

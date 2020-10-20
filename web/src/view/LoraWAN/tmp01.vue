@@ -2,7 +2,7 @@
 <div id="app">
     <div>
         <div>
-            <div class="_1MLi6nBmjx" style="height: 164px;"></div>
+            <div class="_1MLi6nBmjx" style="height: 100px;"></div>
         </div>
         <el-main class="_2bSSLJkzfF">
             <div class="_3li30OrfYV _1AFxwjx9NH ">
@@ -21,7 +21,7 @@
                         </span>
                     </el-header>
                 </div>
-                <ul class="_23o-CEGlwh">
+                <ul v-show="isshow" class="_23o-CEGlwh" >
                     <div class="_4BIxfcXe76">
                         <p>
                             <span>您还没有任何应用</span>
@@ -38,28 +38,38 @@
                        <template slot-scope="scope">
                             <el-popover trigger="hover" placement="top">
                             <p>应用: {{ scope.row.name }}</p>
-                            <p>EUI: {{ scope.row.address }}</p>
+                            <p>EUI: {{ scope.row.id }}</p>
                             <div slot="reference" class="name-wrapper">
-                                <el-tag size="medium" type="warning">{{ scope.row.date }}</el-tag>
+                                <el-tag size="medium" type="warning">{{ scope.row.id }}</el-tag>
                             </div>
                             </el-popover>
                         </template> 
                     </el-table-column>
-                    <el-table-column width="180">
+                    <el-table-column width="220">
                         <template slot-scope="scope">
-                            <i class="el-icon-time"></i>
+                            <i class="el-icon-message"></i>
                             <span style="margin-left: 10px">{{ scope.row.name }}</span>
                         </template>
                     </el-table-column>
                     <el-table-column width="180">
                         <template slot-scope="scope">
-                            <el-popover trigger="hover" placement="top">
-                            <p>应用: {{ scope.row.name }}</p>
-                            <p>EUI: {{ scope.row.address }}</p>
                             <div slot="reference" class="name-wrapper">
-                                <el-tag size="medium" type="info">{{ scope.row.address }}</el-tag>
+                                <el-tag size="medium" type="info">{{ scope.row.description }}</el-tag>
                             </div>
-                            </el-popover>
+                        </template> 
+                    </el-table-column>
+                    <el-table-column width="280">
+                        <template slot-scope="scope">
+                            <div slot="reference" class="name-wrapper">
+                                <el-tag size="medium" type="info">{{ scope.row.serviceProfileID }}</el-tag>
+                            </div>
+                        </template> 
+                    </el-table-column>
+                    <el-table-column width="180">
+                        <template slot-scope="scope">
+                            <div slot="reference" class="name-wrapper">
+                                <el-tag size="medium" type="info">{{ scope.row.serviceProfileName }}</el-tag>
+                            </div>
                         </template> 
                     </el-table-column>
                   </el-table> 
@@ -78,60 +88,32 @@
 </template>
 
 <script>
+import { loraServerGetApp } from "@/api/user";
+import tableVue from '../example/table/table.vue';
 export default {
     data () {
         return {
-           tableData: [{
-          date: '2016-05-02',
-          name: 'vttn-handler-eu',
-          address: '70b37x9b0dc7e65f8d'
-        }, {
-          date: '2016-05-04',
-          name: 'ttn-handler-eu',
-          address: '70b37x9b0dc7e65f8d'
-        }, {
-          date: '2016-05-01',
-          name: 'ttn-handler-eu',
-          address: '70b37x9b0dc7e65f8d'
-        }, {
-          date: '2016-05-03',
-          name: 'ttn-handler-eu',
-          address: '70b37x9b0dc7e65f8d'
-        }, {
-          date: '2016-05-04',
-          name: 'ttn-handler-eu',
-          address: '70b37x9b0dc7e65f8d'
-        }, {
-          date: '2016-05-01',
-          name: 'ttn-handler-eu',
-          address: '70b37x9b0dc7e65f8d'
-        }, {
-          date: '2016-05-03',
-          name: 'ttn-handler-eu',
-          address: '70b37x9b0dc7e65f8d'
-        }, {
-          date: '2016-05-04',
-          name: 'ttn-handler-eu',
-          address: '70b37x9b0dc7e65f8d'
-        }, {
-          date: '2016-05-01',
-          name: 'ttn-handler-eu',
-          address: '70b37x9b0dc7e65f8d'
-        }, {
-          date: '2016-05-03',
-          name: 'ttn-handler-eu',
-          address: '70b37x9b0dc7e65f8d'
-        }, {
-          date: '2016-05-04',
-          name: 'ttn-handler-eu',
-          address: '70b37x9b0dc7e65f8d'
-        }]
+           tableData: [],
+           isshow:false,
+        Parameter:{
+            limit: 9
+        }
         }       
     },
+    created :function(){
+            loraServerGetApp(this.Parameter).then((ele)=>{
+                this.tableData = ele.result;
+            //this.$confirm(ele.result); 
+            if(this.tableData==""){
+                this.isshow=true;
+            }
+
+            });
+        },
     methods :{
         openDetails (row) {
         //具体操作 
-         this.$confirm('确认关闭？')     
+         this.$confirm(row.id+row.description)     
     }
     }   
 }
