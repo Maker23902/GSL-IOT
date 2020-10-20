@@ -64,6 +64,15 @@
                 <h1> 协作者</h1>
             </el-header>
             <div class="pad-style">
+                 <el-table :data="tableData" style="width: 100% ;cursor: pointer;"> 
+                    <el-table-column>
+                       <template slot-scope="scope">
+                            <div slot="reference" class="name-wrapper">
+                                <el-tag size="medium" type="warning">dsdsds</el-tag>
+                            </div>
+                        </template> 
+                    </el-table-column>
+                 </el-table>
             </div>
         </div>
         <div class="block-wrapper">
