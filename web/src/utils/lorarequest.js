@@ -71,8 +71,6 @@ loraServerService.interceptors.response.use(
             store.commit('user/SetLStoken', response.data["jwt"])
         }
         if (response.data.code === undefined || response.headers.success === "true") {
-            var tmp = store.getters['user/LStoken']
-            console.log("111------"+tmp)
             return response.data
         } else {
             Message({
