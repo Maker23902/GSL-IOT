@@ -45,7 +45,7 @@
                             </el-popover>
                         </template> 
                     </el-table-column>
-                    <el-table-column width="220">
+                    <el-table-column width="240">
                         <template slot-scope="scope">
                             <i class="el-icon-message"></i>
                             <span style="margin-left: 10px">{{ scope.row.name }}</span>
@@ -54,7 +54,7 @@
                     <el-table-column width="180">
                         <template slot-scope="scope">
                             <div slot="reference" class="name-wrapper">
-                                <el-tag size="medium" type="info">{{ scope.row.description }}</el-tag>
+                                <el-tag size="medium" type="success">{{ scope.row.description }}</el-tag>
                             </div>
                         </template> 
                     </el-table-column>
@@ -68,7 +68,7 @@
                     <el-table-column width="180">
                         <template slot-scope="scope">
                             <div slot="reference" class="name-wrapper">
-                                <el-tag size="medium" type="info">{{ scope.row.serviceProfileName }}</el-tag>
+                                <el-tag size="medium" type="danger">{{ scope.row.serviceProfileName }}</el-tag>
                             </div>
                         </template> 
                     </el-table-column>
@@ -96,7 +96,7 @@ export default {
            tableData: [],
            isshow:false,
         Parameter:{
-            limit: 9
+            limit: 19
         }
         }       
     },
@@ -120,9 +120,8 @@ export default {
 </script>
 
 <style>
-#app1{
-    height: 100%;
-    overflow: auto;
+#app{
+    height: auto;
 }
 
 ::-moz-focus-inner {
@@ -1978,11 +1977,8 @@ li:last-child .Mp037dqKPM {
     color: #828282;
     opacity: .8;
     font-size: .8em;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1em;
+    position: relative;
+    padding: 0em;
     z-index: 0
 }
 

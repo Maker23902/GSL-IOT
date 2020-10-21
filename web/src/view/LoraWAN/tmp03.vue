@@ -14,47 +14,70 @@
         </div>
         <div class="block-wrapper">
             <el-header class="header-style">
-                <h1> 应用总览 </h1>
+                <h1>应用总览</h1>
             </el-header>
-            <div class="pad-style">
-                <div class="pad-text">
-                    <el-row>
-                        <el-col :span="8">应用ID</el-col>
-                        <el-col :span="8">
-                            <el-tag type="warning">12123</el-tag>
-                        </el-col>
-                    </el-row>
-                    <el-row>
-                        <el-col :span="4">描述</el-col>
-                        <el-col :span="4">
-                            <el-tag type="warning"> </el-tag>
-                        </el-col>
-                    </el-row>
-                    <el-row>
-                        <el-col :span="4">创建时间</el-col>
-                        <el-col :span="4">
-                            <el-tag>7天前</el-tag>
-                        </el-col>
-                    </el-row>
-                    <el-row>
-                        <el-col :span="4">句柄</el-col>
-                        <el-col :span="4">
-                            <el-tag type="info">ttn-handler-eu</el-tag>
-                        </el-col>
-                    </el-row>
+            <div class="pad-style" itemscope>
+                <div style="display: flex; padding-left:6em;">
+                    <!-- 局部flex -->
+                    <el-col :span="3" style="text-align:right; margin-right: 1em; font-weight:900;">
+                        <el-row>应用ID</el-row>
+                        <el-row>描述</el-row>
+                        <el-row>创建时间</el-row>
+                        <el-row>句柄</el-row>
+                    </el-col>
+                    <el-col :span="4" style="text-align:left">
+                        <el-row style="color: #0000fe;background-color:#7df68b">dfdsfd</el-row>
+                        <el-row>武汉光谷国际广场</el-row>
+                        <el-row>9天前</el-row>
+                        <el-row>app-cn470-profile</el-row>
+                    </el-col>
                 </div>
             </div>
         </div>
         <div class="block-wrapper">
             <el-header class="header-style">
                 <h1> 应用EUI</h1>
+                <span class="Corner-style">
+                    <a href="/app">
+                        <span class="el-icon-setting" style="color: #828282;"></span>
+                        <span style="color: #828282; padding-left: .6rem; text-decoration: underline;">管理EUI</span>
+                    </a>
+                </span>
             </el-header>
             <div class="pad-style">
+                <div class="hex">
+                    <div class="code icon" @click="isCode=!isCode" :class="isCode ? 'checked' : ''">
+                        <v-icon name="code" />
+                    </div>
+                    <div class="sb icon" @click="isMSB=!isMSB">{{ isMSB ? 'M' : 'L' }}</div>
+                    <div class="visible icon" @click="is_visible=true" v-if="!is_visible">
+                        <v-icon name="regular/eye" />
+                    </div>
+                    <div class="visible icon" @click="is_visible=false" v-else>
+                        <v-icon name="regular/eye-slash" />
+                    </div>
+                    <div class="value" id="text">{{ show }}</div>
+                    <div class="copy icon" :id="'id' + _uid" :data-clipboard-text="copy_text">
+                        <v-icon class="icon" name="regular/copy" />
+                    </div>
+                </div>
             </div>
         </div>
         <div class="block-wrapper">
             <el-header class="header-style">
                 <h1> 设备</h1>
+                <span class="Corner-style">
+                    <a href="/app">
+                        <svg viewBox="0 0 512 512" class="svg-style">
+                            <path class="svg-color" d="M256,32C132.3,32,32,132.3,32,256s100.3,224,224,224s224-100.3,224-224S379.7,32,256,32z M384,272H272v112h-32V272H128v-32 h112V128h32v112h112V272z"></path>
+                        </svg>
+                        <span style="color: #828282; padding-left: .6rem; text-decoration: underline;">注册设备</span>
+                    </a>
+                    <a href="/app">
+                        <span class="el-icon-setting" style="padding-left: .6rem; color: #828282;"></span>
+                        <span style="color: #828282; padding-left: .6rem; text-decoration: underline;">管理设备</span>
+                    </a>
+                </span>
             </el-header>
             <div class="pad-style">
             </div>
@@ -62,22 +85,34 @@
         <div class="block-wrapper">
             <el-header class="header-style">
                 <h1> 协作者</h1>
+                <span class="Corner-style">
+                    <a href="/app">
+                        <span class="el-icon-setting" style="color: #828282;"></span>
+                        <span style="color: #828282; padding-left: .6rem; text-decoration: underline;">管理协作者</span>
+                    </a>
+                </span>
             </el-header>
             <div class="pad-style">
-                 <el-table :data="tableData" style="width: 100% ;cursor: pointer;"> 
+                <el-table :data="tableData" style="width: 100% ;cursor: pointer;">
                     <el-table-column>
-                       <template slot-scope="scope">
+                        <template slot-scope="scope">
                             <div slot="reference" class="name-wrapper">
                                 <el-tag size="medium" type="warning">dsdsds</el-tag>
                             </div>
-                        </template> 
+                        </template>
                     </el-table-column>
-                 </el-table>
+                </el-table>
             </div>
         </div>
         <div class="block-wrapper">
             <el-header class="header-style">
                 <h1> 访问密钥</h1>
+                <span class="Corner-style">
+                    <a href="/app">
+                        <span class="el-icon-setting" style="color: #828282;"></span>
+                        <span style="color: #828282; padding-left: .6rem; text-decoration: underline;">管理密钥</span>
+                    </a>
+                </span>
             </el-header>
             <div class="pad-style">
             </div>
@@ -86,7 +121,92 @@
 </div>
 </template>
 
+<script>
+import ClipboardJS from 'clipboard'
+import Icon from "vue-awesome/components/Icon";
+
+import 'vue-awesome/icons/code'
+import 'vue-awesome/icons/regular/eye'
+import 'vue-awesome/icons/regular/eye-slash'
+import 'vue-awesome/icons/regular/copy'
+
+export default {
+    name: "hex-text",
+    data() {
+        return {
+            show: null,
+            clipboard: null,
+            bytes: [],
+            isMSB: true,
+            isCode: false,
+            is_visible: this.visible
+        }
+    },
+    components: {
+        'v-icon': Icon
+    },
+    props: {
+        value: String,
+        visible: Boolean
+    },
+    created() {
+        this.value="4342432423243"
+        this.clipboard = new ClipboardJS('#id' + this._uid);
+        this.clipboard.on('success', () => {
+            this.$message({
+                message: '复制成功',
+                type: 'success'
+            });
+        });
+    },
+    watch: {
+        value() {
+            if (this.value && this.value.length % 2 === 0) {
+                this.bytes = [];
+                for (let i = 0; i < this.value.length;) {
+                    this.bytes.push(this.value.substr(i, 2).toUpperCase());
+                    i += 2;
+                }
+                this.update();
+            }
+        },
+        is_visible() {
+            this.update();
+        },
+        isMSB() {
+            this.bytes.reverse();
+            this.update();
+        },
+        isCode() {
+            this.update();
+        }
+    },
+    methods: {
+        update() {
+            if (this.isCode) {
+                this.show = '{ 0x' + this.bytes.join(', 0x') + ' }';
+            } else {
+                this.show = this.bytes.join(' ');
+            }
+
+            if (!this.is_visible) {
+                this.show = this.show.replace(/[0-9a-zA-Z]/g, '·');
+            }
+        }
+    },
+    computed: {
+        copy_text: function () {
+            return this.isCode ? this.show : this.bytes.join('');
+        }
+    }
+}
+</script>
+
 <style>
+#app {
+    height: auto;
+}
+
 .box-style {
     max-width: 1100px;
     width: 100%;
@@ -140,9 +260,94 @@
     margin: 0;
     width: 100%;
     position: relative;
-    display: flex;
     align-items: center;
     justify-content: middle;
     min-height: 2.6em;
+    z-index: 0;
+}
+
+.Corner-style {
+    height: 4rem;
+    line-height: 4rem;
+    font-size: .9em;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 1em;
+    color: #828282;
+}
+
+.svg-style {
+    vertical-align: middle;
+
+    height: 1.1em;
+    width: 1.1em;
+}
+
+.svg-color {
+    fill: #7df68b;
+}
+</style>
+<style lang="scss" scoped>
+.hex {
+    display: flex;
+    flex-flow: row;
+    border: 2px solid #eeeeee;
+    border-radius: 5px;
+    width: 70%;
+    text-align: center;
+    line-height: 35px;
+
+    div {
+        height: 35px;
+        display: inline-block;
+    }
+
+    .value {
+        padding: 0 15px;
+        background-color: #f6f6f6;
+        font-family: Consolas, sans-serif;
+    }
+
+    .icon {
+        flex: 0 0 auto;
+        width: 35px;
+        height: 35px;
+
+        cursor: pointer;
+        color: #666;
+
+        .fa-icon {
+            width: 13px;
+            height: 13px;
+            color: #666;
+            margin: 11px;
+        }
+    }
+
+    .icon:hover,
+    .checked {
+        background-color: #ecf5ff;
+        color: #409eff;
+
+        .fa-icon {
+            color: #409eff;
+        }
+    }
+
+    .sb {
+        font-size: 13px;
+        user-select: none;
+        border-left: 1px solid #eeeeee;
+        border-right: 1px solid #eeeeee;
+    }
+
+    .visible {
+        border-right: 1px solid #eeeeee;
+    }
+
+    .copy {
+        border-left: 1px solid #eeeeee;
+    }
 }
 </style>
