@@ -1,0 +1,6 @@
+[GIN-VUE-ADMIN]2020/10/25 - 21:47:11.046	[34minfo[0m	register table success
+[GIN-VUE-ADMIN]2020/10/25 - 21:47:14.006	[34minfo[0m	use middleware logger
+[GIN-VUE-ADMIN]2020/10/25 - 21:47:14.026	[34minfo[0m	use middleware cors
+[GIN-VUE-ADMIN]2020/10/25 - 21:47:14.026	[34minfo[0m	register swagger handler
+[GIN-VUE-ADMIN]2020/10/25 - 21:47:14.115	[34minfo[0m	router register success
+[GIN-VUE-ADMIN]2020/10/25 - 21:47:14.116	[34minfo[0m	server run success on 	{"address": ":8888"}
