@@ -43,6 +43,12 @@ func (pl *lStatePool) Shutdown() {
 }
 
 // Global LState pool
-var luaPool = &lStatePool{
-	saved: make([]*lua.LState, 0, 4),
+// var luaPool = &lStatePool{
+// 	saved: make([]*lua.LState, 0, 4),
+// }
+
+func (pl *lStatePool) newVMPool(error, num uint32) {
+	return &lStatePool{
+		saved: make([]*lua.LState, 0, 4),
+	}
 }

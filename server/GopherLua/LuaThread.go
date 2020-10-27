@@ -3,41 +3,35 @@ package luathread
 import (
 	"bufio"
 	"os"
-	"runtime"
 	"testing"
 	"text/template/parse"
-	"time"
 
 	lua "github.com/yuin/gopher-lua"
 )
 
 // dsds
 func LuaServer() {
-	L := lua.NewState() // 创建一个lua解释器实例
-	defer L.Close()
+	pool := newVMPool(nil, 100)
 	for {
-		runtime.Gosched()
-		time.Sleep(time.Second)
-		// 执行字符串语句
-		if err := L.DoString(`print("hello")`); err != nil {
-			panic(err)
-		}
+		l := pool.get()
+		_ = l.DoString(`print("hello")`)
+		pool.put(l)
 	}
 
 }
 
-func MyWorker() {
-	L := luaPool.Get()
-	defer luaPool.Put(L)
-	/* your code here */
-}
+// func MyWorker() {
+// 	L := luaPool.Get()
+// 	defer luaPool.Put(L)
+// 	/* your code here */
+// }
 
-func main() {
-	defer luaPool.Shutdown()
-	go MyWorker()
-	go MyWorker()
-	/* etc... */
-}
+// func main1() {
+// 	defer luaPool.Shutdown()
+// 	go MyWorker()
+// 	go MyWorker()
+// 	/* etc... */
+// }
 
 func checkFileIsExist(filename string) bool {
 	var exist = true
