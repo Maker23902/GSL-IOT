@@ -1,7 +1,6 @@
 package main
 
 import (
-	luathread "gin-vue-admin/GopherLua"
 	"gin-vue-admin/core"
 	"gin-vue-admin/global"
 	"gin-vue-admin/gva/init_data"
@@ -20,7 +19,7 @@ func main() {
 	if global.GVA_CONFIG.System.NeedInitData {
 		init_data.InitData() // 通过配置文件初始化数据 默认为 false 首次运行需要将 ./config.yaml中 system下的 need-init-data 修改为true
 	}
-	go luathread.LuaServer()
+	//luathread.LuaServer()
 	// 程序结束前关闭数据库链接
 	db, _ := global.GVA_DB.DB()
 	defer db.Close()

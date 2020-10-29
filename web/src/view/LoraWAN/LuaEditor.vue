@@ -1,19 +1,18 @@
 <template>
 <div>
-    <editor v-model="content" :content="content" :lang="'lua'" theme="monokai" width="100%" height="800" :options="{
+    <editor v-model="infoBlock.content" :content="infoBlock.content" :lang="'lua'" theme="monokai" width="100%" height="500" :options="{
             enableBasicAutocompletion: true,
             enableSnippets: true,
             enableLiveAutocompletion: true,       
-            showPrintMargin:false,   //去除编辑器里的竖线
+            showPrintMargin:true,   //去除编辑器里的竖线
         }" @init="editorInit">
     </editor>
-    <input type="file" @change="getFile($event)" /><button @click="upload">上传</button>
-    <div>{{ result }}</div>
-    <div v-show="uping==1">正在上传中</div>
+    <el-button type="primary" @click="upload">上传脚本</el-button>
 </div>
 </template>
 
 <script>
+import { UploadCode } from "@/api/scriptManager";
 export default {
     name: 'aceEditor',
     components: {
@@ -21,7 +20,11 @@ export default {
     },
     data() {
         return {
-            content: ""
+            infoBlock :{
+                APPID: "76579",
+                Cyclems: "300000",
+                content: ""
+            }           
         }
     },
     methods: {
@@ -32,28 +35,7 @@ export default {
             require('brace/snippets/lua') //snippet
         },
         upload: function () {
-            //console.log(this.upath);
-            var zipFormData = new FormData();
-            zipFormData.append('filename', this.upath); //filename是键，file是值，就是要传的文件，test.zip是要传的文件名
-            let config = {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            };
-            this.uping = 1;
-            this.$http.post('http://localhost:42565/home/up', zipFormData, config).then(function (response) {
-                console.log(response);
-                console.log(response.data);
-                console.log(response.bodyText);
-
-                var resultobj = response.data;
-                this.uping = 0;
-                this.result = resultobj.msg;
-            });
-        },
-
-        getFile: function (even) {
-            this.upath = event.target.files[0];
+               UploadCode(this.infoBlock)          
         },
     }
 }

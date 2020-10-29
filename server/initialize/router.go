@@ -5,10 +5,11 @@ import (
 	"gin-vue-admin/global"
 	"gin-vue-admin/middleware"
 	"gin-vue-admin/router"
-	"github.com/gin-gonic/gin"
-	"github.com/swaggo/gin-swagger"
-	"github.com/swaggo/gin-swagger/swaggerFiles"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
 // 初始化总路由
@@ -32,6 +33,7 @@ func Routers() *gin.Engine {
 	router.InitAuthorityRouter(ApiGroup)             // 注册角色路由
 	router.InitApiRouter(ApiGroup)                   // 注册功能api路由
 	router.InitFileUploadAndDownloadRouter(ApiGroup) // 文件上传下载功能路由
+	router.InitScriptManager(ApiGroup)               // 脚本文件管理
 	router.InitSimpleUploaderRouter(ApiGroup)        // 断点续传（插件版）
 	router.InitWorkflowRouter(ApiGroup)              // 工作流相关路由
 	router.InitCasbinRouter(ApiGroup)                // 权限相关路由

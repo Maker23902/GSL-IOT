@@ -1,37 +1,55 @@
 package luathread
 
 import (
-	"bufio"
+	"fmt"
 	"os"
-	"testing"
-	"text/template/parse"
 
 	lua "github.com/yuin/gopher-lua"
 )
 
 // dsds
 func LuaServer() {
-	pool := newVMPool(nil, 100)
-	for {
-		l := pool.get()
-		_ = l.DoString(`print("hello")`)
-		pool.put(l)
-	}
+	luaPool := newVMPool(100)
+
+	defer luaPool.Shutdown()
+	go MyWorker(luaPool)
 
 }
 
-// func MyWorker() {
-// 	L := luaPool.Get()
-// 	defer luaPool.Put(L)
-// 	/* your code here */
-// }
+// luaPool
+func MyWorker(pool *lStatePool) {
+	for {
+		L := pool.Get()
+		//defer pool.Put(L)
+		/* your code here */
+		// 加载fib.lua
+		if err := L.DoFile("fib.lua"); err != nil {
+			panic(err)
+		}
+		// 调用fib(n)
+		err := L.CallByParam(lua.P{
+			Fn:      L.GetGlobal("fib"), // 获取fib函数引用
+			NRet:    1,                  // 指定返回值数量
+			Protect: true,               // 如果出现异常，是panic还是返回err
+		}, lua.LNumber(10)) // 传递输入参数n=10
+		if err != nil {
+			panic(err)
+		}
+		// 获取返回结果
+		ret := L.Get(-1)
+		// 从堆栈中扔掉返回结果
+		L.Pop(-1)
+		// 打印结果
+		res, ok := ret.(lua.LNumber)
+		if ok {
+			fmt.Println(int(res))
+		} else {
+			fmt.Println("unexpected result")
+		}
+		pool.Put(L)
 
-// func main1() {
-// 	defer luaPool.Shutdown()
-// 	go MyWorker()
-// 	go MyWorker()
-// 	/* etc... */
-// }
+	}
+}
 
 func checkFileIsExist(filename string) bool {
 	var exist = true
@@ -41,6 +59,7 @@ func checkFileIsExist(filename string) bool {
 	return exist
 }
 
+/*
 // CompileLua reads the passed lua file from disk and compiles it.
 func CompileLua(filePath string) (*lua.FunctionProto, error) {
 	file, err := os.Open(filePath)
@@ -79,12 +98,4 @@ func Example() {
 	DoCompiledFile(c, codeToShare)
 }
 
-// 虚拟机实例池
-func BenchmarkRunWithPool(b *testing.B) {
-	pool := newVMPool(nil, 100)
-	for i := 0; i < b.N; i++ {
-		l := pool.get()
-		_ = l.DoString(`a = 1 + 1`)
-		pool.put(l)
-	}
-}
+*/
