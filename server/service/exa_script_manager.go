@@ -2,12 +2,27 @@ package service
 
 import (
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
 
 	"github.com/gin-gonic/gin"
 )
+
+func check(e error) {
+	if e != nil {
+		panic(e)
+	}
+}
+
+func checkFileIsExist(filename string) bool {
+	var exist = true
+	if _, err := os.Stat(filename); os.IsNotExist(err) {
+		exist = false
+	}
+	return exist
+}
 
 // FilerCreate 创建文件
 func FilerCreate(c *gin.Context) {
@@ -26,24 +41,54 @@ func FilerCreate(c *gin.Context) {
 	})
 }
 
+type fileForm struct {
+	APPID   string `form:"appid" binding:"required"`
+	Cyclems string `form:"cyclems" binding:"required"`
+	Content string `form:"content" binding:"required"`
+}
+
 // FilerWrite 将内容写入文件
-func FilerWrite(c *gin.Context) {
+func FilerWrite(c *gin.Context) bool {
+	var f *os.File
+	var err1 error
+	var form fileForm
+
 	iswrite := true //写入文件是否成功
-	//需要写入到文件的内容
-	info := c.PostForm("info")
-	path := c.PostForm("path")
 
-	d1 := []byte(info)
-	err := ioutil.WriteFile(path, d1, 0644)
-
-	if err != nil {
-		iswrite = false
+	if c.ShouldBind(&form) == nil {
+		fmt.Println(form.APPID)
+		fmt.Println(form.Cyclems)
+		fmt.Println(form.Content)
 	}
+	filename := form.APPID + ".lua"
+	if checkFileIsExist(filename) { //如果文件存在
+		f, err1 = os.OpenFile(filename, os.O_RDWR|os.O_TRUNC|os.O_CREATE, 0766) //打开文件 os.O_APPEND
+		fmt.Println("文件存在")
+	} else {
+		f, err1 = os.Create(filename) //创建文件
+		fmt.Println("文件不存在")
+	}
+	defer f.Close()
+	check(err1)
+	//data, _ := ioutil.ReadAll(c.Request.Body)
+	n, err1 := io.WriteString(f, form.Content) //写入文件(字符串)
+	check(err1)
+
+	//需要写入到文件的内容
+	// d1 := []byte(content)
+	// err := ioutil.WriteFile(path, d1, 0644)
+
+	// if err != nil {
+	// 	iswrite = false
+	// }
+	iswrite = true
 	//返回结果
 	c.JSON(http.StatusOK, gin.H{
 		"success": iswrite,
-		"info":    info,
+		"info":    n,
 	})
+
+	return iswrite
 }
 
 // FilerRead 读取文件内容.

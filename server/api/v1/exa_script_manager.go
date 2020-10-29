@@ -1,8 +1,7 @@
 package v1
 
 import (
-	"fmt"
-	"io/ioutil"
+	"gin-vue-admin/service"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,7 +15,12 @@ import (
 // @Router /fileUploadAndDownload/UploadCode [post]
 func UploadCode(c *gin.Context) {
 
-	data, _ := ioutil.ReadAll(c.Request.Body)
-	fmt.Printf("ctx.Request.body: %v", string(data))
+	err := service.FilerWrite(c)
+	if err != true {
+		panic(err)
+	}
+
+	//data, _ := ioutil.ReadAll(c.Request.Body)
+	//fmt.Printf("ctx.Request.body: %v", string(data))
 	//service.FilerCreate()
 }
