@@ -99,3 +99,7 @@ func Example() {
 }
 
 */
+
+func GetSensorData() //获取传感器数据
+
+func SendDataToContollor() //发送数据

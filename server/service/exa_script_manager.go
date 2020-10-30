@@ -60,7 +60,7 @@ func FilerWrite(c *gin.Context) bool {
 		fmt.Println(form.Cyclems)
 		fmt.Println(form.Content)
 	}
-	filename := form.APPID + ".lua"
+	filename := "ScriptFiles/" + form.APPID + ".lua"
 	if checkFileIsExist(filename) { //如果文件存在
 		f, err1 = os.OpenFile(filename, os.O_RDWR|os.O_TRUNC|os.O_CREATE, 0766) //打开文件 os.O_APPEND
 		fmt.Println("文件存在")

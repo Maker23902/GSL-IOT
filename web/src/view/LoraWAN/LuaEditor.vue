@@ -1,6 +1,6 @@
 <template>
 <div>
-    <editor v-model="infoBlock.Content" :content="infoBlock.Content" :lang="'lua'" theme="monokai" width="100%" height="500" :options="{
+    <editor v-model="infoBlock.content" :content="infoBlock.content" :lang="'lua'" theme="monokai" width="100%" height="500" :options="{
             enableBasicAutocompletion: true,
             enableSnippets: true,
             enableLiveAutocompletion: true,       
@@ -23,7 +23,8 @@ export default {
             infoBlock :{
                 APPID: "76579",
                 Cyclems: "300000",
-                Content: ""
+                
+                content: ""
             }           
         }
     },
