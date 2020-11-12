@@ -7,14 +7,14 @@
                 <el-button type="primary" icon="el-icon-edit">总览</el-button>
                 <el-button type="primary" icon="el-icon-share">设备</el-button>
                 <el-button type="primary" icon="el-icon-menu">载荷格式</el-button>
-                <el-button type="primary" icon="el-icon-edit">集成</el-button>
+                <el-button type="primary" icon="el-icon-edit">运行逻辑</el-button>
                 <el-button type="primary" icon="el-icon-upload el-icon--right">数据</el-button>
                 <el-button type="primary" icon="el-icon-setting">设置</el-button>
             </el-button-group>
         </div>
         <div class="block-wrapper">
             <el-header class="header-style">
-                <h1>应用总览</h1>
+                <h1 style="font-size:15px;">应用总览</h1>
             </el-header>
             <div class="pad-style" itemscope>
                 <div style="display: flex; padding-left:6em;">
@@ -24,12 +24,14 @@
                         <el-row>描述</el-row>
                         <el-row>创建时间</el-row>
                         <el-row>句柄</el-row>
+                        <el-row>运行状态</el-row>
                     </el-col>
                     <el-col :span="4" style="text-align:left">
                         <el-row style="color: #0000fe;background-color:#7df68b">dfdsfd</el-row>
                         <el-row>武汉光谷国际广场</el-row>
                         <el-row>9天前</el-row>
                         <el-row>app-cn470-profile</el-row>
+                        <el-row>停止</el-row>
                     </el-col>
                 </div>
             </div>
