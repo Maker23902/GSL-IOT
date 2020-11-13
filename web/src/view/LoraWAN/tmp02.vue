@@ -170,15 +170,6 @@
                 </a>
             </div>
         </main>
-        <footer class="_2M0b-rFPSl">
-            <span>
-                <!-- react-text: 73 -->用户就是我们的网络，让我们一起建设腾讯物联网开发者社区
-                <!-- /react-text --></span>
-            <!-- react-text: 74 --> —
-            <!-- /react-text -->
-            <a href="http://thethingsnetwork.org/">The Things Network</a>
-        </footer>
-        <div class="_2XCQ3jPaXY"></div>
     </div>
 </div>
 </template>

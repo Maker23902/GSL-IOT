@@ -76,13 +76,6 @@
                   <li class="_1XoAvrFvz4 ZgDgoTQRLA"><a href="/applications/43234422"><span class="_2N2JjmChgH"><span class="_3p_L113cuP _1fFYBdB1gh">43234422</span><span class="_2FS-ha9L4W">534</span></span><span class="CEYHrbbxSt"><span class="_4sRu7dF5_f">ttn-handler-eu</span><span class="_3MHekzV0VD _3p_L113cuP undefined _3h8g15tIBJ"><span class=""><span class="_2UzYGsv2RA">70</span><span class="_2UzYGsv2RA">B3</span><span class="_2UzYGsv2RA">D5</span><span class="_2UzYGsv2RA">7E</span><span class="_2UzYGsv2RA">D0</span><span class="_2UzYGsv2RA">03</span><span class="_2UzYGsv2RA">63</span><span class="_2UzYGsv2RA">3B</span></span></span></span></a></li> 
             </div>
         </el-main>
-        <el-footer class="_2M0b-rFPSl">
-            <span>
-                用户就是我们的网络，让我们一起建设腾讯物联网开发者社区
-            </span>
-            —
-            <a href="http://thethingsnetwork.org/">The Things Network</a>
-        </el-footer>
     </div>
 </div>
 </template>

@@ -48,12 +48,6 @@
         </el-col>
     </el-row>
     <el-button type="primary" @click="testlogin"> 登录LoraServer</el-button>
-    <el-footer class="_2M0b-rFPSl">
-        <span>
-            用户就是我们的网络，让我们一起建设物联网开发者社区-
-        </span>
-        <a href="http://thethingsnetwork.org/">The Things Network</a>
-    </el-footer>
 </div>
 </template>
 <script>
@@ -235,6 +229,9 @@ a:hover ._2arylpCQ92 {
     left: 0;
     right: 0;
     position: relative;
+}
+#app {
+    height: auto;
 }
 
 ._1tiwnVe2y4,
