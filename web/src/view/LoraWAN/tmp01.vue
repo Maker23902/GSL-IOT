@@ -21,7 +21,7 @@
                         </span>
                     </el-header>
                 </div>
-                <ul v-show="isshow" class="_23o-CEGlwh" >
+                <ul v-show="isshow" class="_23o-CEGlwh">
                     <div class="_4BIxfcXe76">
                         <p>
                             <span>您还没有任何应用</span>
@@ -33,17 +33,17 @@
                         </p>
                     </div>
                 </ul>
-                  <el-table :data="tableData" style="width: 100% ;cursor: pointer;" :show-header="false" @row-click="openDetails" > 
+                <el-table :data="tableData" style="width: 100% ;cursor: pointer;" :show-header="false" @row-click="openDetails">
                     <el-table-column>
-                       <template slot-scope="scope">
+                        <template slot-scope="scope">
                             <el-popover trigger="hover" placement="top">
-                            <p>应用: {{ scope.row.name }}</p>
-                            <p>EUI: {{ scope.row.id }}</p>
-                            <div slot="reference" class="name-wrapper">
-                                <el-tag size="medium" type="warning">{{ scope.row.id }}</el-tag>
-                            </div>
+                                <p>应用: {{ scope.row.name }}</p>
+                                <p>EUI: {{ scope.row.id }}</p>
+                                <div slot="reference" class="name-wrapper">
+                                    <el-tag size="medium" type="warning">{{ scope.row.id }}</el-tag>
+                                </div>
                             </el-popover>
-                        </template> 
+                        </template>
                     </el-table-column>
                     <el-table-column width="240">
                         <template slot-scope="scope">
@@ -56,24 +56,24 @@
                             <div slot="reference" class="name-wrapper">
                                 <el-tag size="medium" type="success">{{ scope.row.description }}</el-tag>
                             </div>
-                        </template> 
+                        </template>
                     </el-table-column>
                     <el-table-column width="280">
                         <template slot-scope="scope">
                             <div slot="reference" class="name-wrapper">
                                 <el-tag size="medium" type="info">{{ scope.row.serviceProfileID }}</el-tag>
                             </div>
-                        </template> 
+                        </template>
                     </el-table-column>
                     <el-table-column width="180">
                         <template slot-scope="scope">
                             <div slot="reference" class="name-wrapper">
                                 <el-tag size="medium" type="danger">{{ scope.row.serviceProfileName }}</el-tag>
                             </div>
-                        </template> 
+                        </template>
                     </el-table-column>
-                  </el-table> 
-                  <li class="_1XoAvrFvz4 ZgDgoTQRLA"><a href="/applications/43234422"><span class="_2N2JjmChgH"><span class="_3p_L113cuP _1fFYBdB1gh">43234422</span><span class="_2FS-ha9L4W">534</span></span><span class="CEYHrbbxSt"><span class="_4sRu7dF5_f">ttn-handler-eu</span><span class="_3MHekzV0VD _3p_L113cuP undefined _3h8g15tIBJ"><span class=""><span class="_2UzYGsv2RA">70</span><span class="_2UzYGsv2RA">B3</span><span class="_2UzYGsv2RA">D5</span><span class="_2UzYGsv2RA">7E</span><span class="_2UzYGsv2RA">D0</span><span class="_2UzYGsv2RA">03</span><span class="_2UzYGsv2RA">63</span><span class="_2UzYGsv2RA">3B</span></span></span></span></a></li> 
+                </el-table>
+                <li class="_1XoAvrFvz4 ZgDgoTQRLA"><a href="/applications/43234422"><span class="_2N2JjmChgH"><span class="_3p_L113cuP _1fFYBdB1gh">43234422</span><span class="_2FS-ha9L4W">534</span></span><span class="CEYHrbbxSt"><span class="_4sRu7dF5_f">ttn-handler-eu</span><span class="_3MHekzV0VD _3p_L113cuP undefined _3h8g15tIBJ"><span class=""><span class="_2UzYGsv2RA">70</span><span class="_2UzYGsv2RA">B3</span><span class="_2UzYGsv2RA">D5</span><span class="_2UzYGsv2RA">7E</span><span class="_2UzYGsv2RA">D0</span><span class="_2UzYGsv2RA">03</span><span class="_2UzYGsv2RA">63</span><span class="_2UzYGsv2RA">3B</span></span></span></span></a></li>
             </div>
         </el-main>
     </div>
@@ -81,40 +81,50 @@
 </template>
 
 <script>
-import { loraServerGetApp } from "@/api/user";
+import {
+    loraServerGetApp
+} from "@/api/user";
 import tableVue from '../example/table/table.vue';
 export default {
-    data () {
+    data() {
         return {
-           tableData: [],
-           isshow:false,
-        Parameter:{
-            limit: 19
+            tableData: [],
+            isshow: false,
+            Parameter: {
+                limit: 19
+            }
         }
-        }       
     },
-    created :function(){
-            loraServerGetApp(this.Parameter).then((ele)=>{
-                this.tableData = ele.result;
+    created: function () {
+        loraServerGetApp(this.Parameter).then((ele) => {
+            this.tableData = ele.result;
             //this.$confirm(ele.result); 
-            if(this.tableData==""){
-                this.isshow=true;
+            if (this.tableData == "") {
+                this.isshow = true;
             }
 
-            });
-        },
-    methods :{
-        openDetails (row) {
-        //具体操作 
-         this.$confirm(row.id+row.description)     
+        });
+    },
+    mounted: function () {
+        
+    },
+    methods: {
+        openDetails(row) {
+            //具体操作 
+            this.$confirm(row.id + row.description)
+        }
     }
-    }   
 }
 </script>
 
 <style>
-#app{
+#app {
     height: auto;
+}
+
+.el-container .admin-box .el-table td,
+.el-container .admin-box .el-table th.is-leaf {
+    border-bottom: 1px solid #d1d1d1 !important;
 }
 
 ::-moz-focus-inner {
@@ -203,413 +213,7 @@ export default {
     text-align: center
 }
 
-@-moz-keyframes VdFAmJ9qEe {
-    0% {
-        transform: rotate(0)
-    }
 
-    to {
-        transform: rotate(1turn)
-    }
-}
-
-@-webkit-keyframes VdFAmJ9qEe {
-    0% {
-        transform: rotate(0)
-    }
-
-    to {
-        transform: rotate(1turn)
-    }
-}
-
-@-o-keyframes VdFAmJ9qEe {
-    0% {
-        transform: rotate(0)
-    }
-
-    to {
-        transform: rotate(1turn)
-    }
-}
-
-@keyframes VdFAmJ9qEe {
-    0% {
-        transform: rotate(0)
-    }
-
-    to {
-        transform: rotate(1turn)
-    }
-}
-
-::-moz-focus-inner {
-    border: 0
-}
-
-.z76xpbOK3N {
-    background: #f5f5f5
-}
-
-._19zUh9bbNY {
-    display: inline-block;
-    height: 1em;
-    width: 1em;
-    text-align: center;
-    font-size: 1em;
-    vertical-align: baseline;
-    line-height: 1
-}
-
-._19zUh9bbNY img {
-    display: inline-block;
-    width: 100%;
-    height: 100%
-}
-
-::-moz-focus-inner {
-    border: 0
-}
-
-._3C-gr9QBr3 {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: hsla(0, 0%, 39%, 0);
-    z-index: 10001;
-    align-items: center;
-    justify-content: center;
-    transition: background .3s;
-    display: flex;
-    visibility: hidden
-}
-
-._1kIWlFHLVQ ._3C-gr9QBr3 {
-    visibility: visible;
-    background: hsla(0, 0%, 39%, .2)
-}
-
-._3NBmn5n7Pt {
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    position: relative;
-    width: 90%;
-    max-height: 80%;
-    max-width: 1100px;
-    flex-basis: 30em;
-    margin: 0 1em;
-    border-radius: 5px;
-    box-shadow: 0 10px 45px rgba(0, 0, 0, .1);
-    transition: transform .3s, opacity .4s, color .2s ease;
-    flex-shrink: 1;
-    flex-grow: 0;
-    transform: translateY(-1em);
-    opacity: 0
-}
-
-._1kIWlFHLVQ ._3NBmn5n7Pt {
-    transform: translateY(0);
-    opacity: 1
-}
-
-._1Ql9SPAc9B ._3NBmn5n7Pt {
-    color: #828282
-}
-
-._2Onfb2rnW4 {
-    padding: 2em;
-    box-sizing: border-box;
-    min-height: 5em;
-    height: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border: 1px solid #ebebeb;
-    border-bottom: 2px solid #ebebeb;
-    overflow: scroll
-}
-
-._14GJ_Qlpfy {
-    height: 3em;
-    text-align: right;
-    padding: 0;
-    display: flex;
-    z-index: 0
-}
-
-._2TpIK1TTVd {
-    background: none;
-    border: 1px solid #eee;
-    border-top: none;
-    cursor: pointer;
-    margin: 0;
-    padding: 0 1em;
-    font: inherit;
-    height: 3em;
-    line-height: 3em;
-    flex-grow: 1;
-    flex-shrink: 0;
-    text-align: center;
-    z-index: 0;
-    color: #828282;
-    vertical-align: top
-}
-
-._2TpIK1TTVd:last-child {
-    border-bottom-right-radius: 5px
-}
-
-._2TpIK1TTVd:first-child {
-    border-bottom-left-radius: 5px
-}
-
-._1Ql9SPAc9B ._2TpIK1TTVd {
-    cursor: default
-}
-
-._2TpIK1TTVd:focus {
-    outline: 0;
-    z-index: 10
-}
-
-._1Ql9SPAc9B ._2TpIK1TTVd,
-._2TpIK1TTVd:disabled {
-    opacity: .5
-}
-
-._1ipJz5tWRc {
-    background: #76fd86;
-    color: #028b12;
-    border-color: #04f020
-}
-
-._1ipJz5tWRc:focus,
-._1ipJz5tWRc:hover {
-    background: #35fc4c
-}
-
-._1ipJz5tWRc:disabled:hover,
-._1Ql9SPAc9B ._1ipJz5tWRc:hover {
-    background: #76fd86
-}
-
-._2b-JO-87LH {
-    background: #fdaa87;
-    color: #9c3003;
-    border-color: #fc8e5f
-}
-
-._2b-JO-87LH:focus,
-._2b-JO-87LH:hover {
-    background: #fc9164
-}
-
-._1Ql9SPAc9B ._2b-JO-87LH:hover,
-._2b-JO-87LH:disabled:hover {
-    background: #fdaa87
-}
-
-.eCfRTrNxmr {
-    background: #f5f5f5;
-    color: #7d7d7d
-}
-
-.eCfRTrNxmr:focus,
-.eCfRTrNxmr:hover {
-    background: #ededed
-}
-
-._1Ql9SPAc9B .eCfRTrNxmr:hover,
-.eCfRTrNxmr:disabled:hover {
-    background: #f5f5f5
-}
-
-.U_K6OD9ZJA {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: hsla(0, 0%, 71%, .2);
-    z-index: 100
-}
-
-._37C34CEhpg {
-    border-top: 1px solid #ffc949;
-    background: #ffefc9;
-    color: #c98e00;
-    display: flex;
-    padding: 1em 2em;
-    margin-left: -2em;
-    margin-right: -2em;
-    width: 100%;
-    position: relative;
-    top: 2em
-}
-
-._37C34CEhpg .dmF16VLERe {
-    margin-right: 1em
-}
-
-@font-face {
-    font-family: ionicons;
-    font-weight: 400;
-    src: url(/assets/ionicons.19e65b89cee273a249fba4c09b951b74.eot);
-    src: url(/assets/ionicons.19e65b89cee273a249fba4c09b951b74.eot#iefix) format("embedded-opentype"), url(/assets/ionicons.2c159d0d05473040b53ec79df8797d32.woff) format("woff"), url(/assets/ionicons.dd4781d1acc57ba4c4808d1b44301201.ttf) format("truetype")
-}
-
-._29A8RQbrwS {
-    display: inline-block;
-    vertical-align: top;
-    position: relative;
-    font-family: ionicons;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    speak: none;
-    font-style: normal;
-    font-weight: 400;
-    font-variant: normal;
-    text-transform: none;
-    text-rendering: auto;
-    font-size: 1.1em;
-    height: 1.1em;
-    line-height: 1.1em;
-    vertical-align: middle
-}
-
-::-moz-focus-inner {
-    border: 0
-}
-
-.IVRuu-gdpq {
-    font-smooth: always;
-    -moz-font-smoothing: antialiased;
-    -webkit-font-smoothing: antialiased;
-    -webkit-font-smoothing: subpixel-antialiased;
-    height: 4rem;
-    line-height: 4rem;
-    background: #fafafa;
-    border-bottom: 2px solid #eee;
-    z-index: 10000;
-    white-space: nowrap;
-    width: 100%;
-    overflow: auto;
-    overflow-y: hidden
-}
-
-.ALUwIeeKYd {
-    max-width: 1100px;
-    margin: auto;
-    box-sizing: border-box;
-    padding: 0 1.2em
-}
-
-._2X1LwTGYq7 {
-    margin: 0 1em;
-    color: #b5b5b5
-}
-
-._2r0k1TrplJ {
-    cursor: pointer
-}
-
-._2r0k1TrplJ .icon {
-    color: #0d83d1;
-    font-size: 1.5em;
-    margin-right: .5rem
-}
-
-._2r0k1TrplJ:last-child {
-    padding-right: 1em
-}
-
-._2r0k1TrplJ,
-._2X1LwTGYq7 {
-    display: inline-block;
-    transition: transform .3s, opacity .35s
-}
-
-._2r0k1TrplJ.animate-enter,
-._2X1LwTGYq7.animate-enter {
-    opacity: 0;
-    transform: translateX(-10px)
-}
-
-._2r0k1TrplJ.animate-enter.animate-enter-active,
-._2r0k1TrplJ.animate-leave,
-._2X1LwTGYq7.animate-enter.animate-enter-active,
-._2X1LwTGYq7.animate-leave {
-    opacity: 1;
-    transform: translateX(0)
-}
-
-._2r0k1TrplJ.animate-leave.animate-leave-active,
-._2X1LwTGYq7.animate-leave.animate-leave-active {
-    opacity: 0;
-    transform: translateX(-1em)
-}
-
-._2zU4dpzwAj {
-    display: inline-block;
-    color: #e3a000;
-    font-size: .8em;
-    margin-left: .5em;
-    position: relative;
-    top: -.8em
-}
-
-::-moz-focus-inner {
-    border: 0
-}
-
-._2BGTjlOuZ9 {
-    font-smooth: always;
-    -moz-font-smoothing: antialiased;
-    -webkit-font-smoothing: antialiased;
-    -webkit-font-smoothing: subpixel-antialiased;
-    max-width: 1100px;
-    height: 4rem;
-    box-sizing: border-box;
-    margin: 1em auto;
-    text-align: right;
-    position: relative;
-    z-index: 9000
-}
-
-._2Z_8KT-G2W {
-    border-radius: 5px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    user-select: none;
-    -webkit-user-select: none;
-    border: 1px solid #eee;
-    border-bottom-color: #e3e3e3
-}
-
-._2Z_8KT-G2W,
-._3CVMuZI5YG {
-    display: inline-block
-}
-
-._3CVMuZI5YG ._2o_U1E3oT1 {
-    padding: 1em;
-    display: inline-block;
-    border-right: 1px solid #eee;
-    background: #fafafa
-}
-
-._3CVMuZI5YG ._2o_U1E3oT1:hover {
-    color: #0d83d1
-}
-
-._3CVMuZI5YG:first-child ._2o_U1E3oT1 {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px
-}
 
 ._3CVMuZI5YG:last-child ._2o_U1E3oT1 {
     border-right: none;

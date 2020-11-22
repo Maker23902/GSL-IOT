@@ -67,6 +67,15 @@
                                 </div>
                             </template>
                         </el-table-column>
+                        <el-table-column width="90">
+                            <template slot-scope="scope">
+                                <span style="color: #828282; padding-right: .6rem;">状态</span>
+                                <svg v-show="state_led==false" xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8">
+                                    <circle cx="4" cy="4" r="4" fill="#06f326" /></svg>
+                                <svg v-show="state_led==true" xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8">
+                                    <circle cx="4" cy="4" r="4" fill="#fc0707" /></svg>
+                            </template>
+                        </el-table-column>
                     </el-table>
                 </div>
             </div>
@@ -88,7 +97,8 @@ export default {
             isshow: false,
             Parameter: {
                 limit: 100
-            }
+            },
+            state_led: true,
         }
     },
     created: function () {
@@ -150,7 +160,7 @@ export default {
 }
 
 .pad-style {
-    
+
     position: relative;
     border: 1px solid #ebebeb;
     border-top: none;

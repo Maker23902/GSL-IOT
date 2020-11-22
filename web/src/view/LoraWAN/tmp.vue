@@ -2,9 +2,9 @@
 <div id="app">
     <div class="text">
         <h1 style="font-size: 1.3em; color: #4a4a4a; line-height: 3em">
-            飞鹿科技物联网后台管理系统
+            凌鹰科技物联网后台管理系统
         </h1>
-        <p>欢迎进入飞鹿物联网开发者社区平台的控制台。</p>
+        <p>欢迎进入凌鹰物联网开发者社区平台的控制台。</p>
         <p style="
           font-size: 14px;
           font-family: lato, helvetica, -apple-system, sans-serif;
@@ -61,6 +61,9 @@ export default {
                 password: "admin",
             },
        }
+    },
+    mounted : function (){
+        
     },
     methods :{
         async testlogin (){

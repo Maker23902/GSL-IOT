@@ -86,6 +86,7 @@ func FilerWrite(c *gin.Context) bool {
 	c.JSON(http.StatusOK, gin.H{
 		"success": iswrite,
 		"info":    n,
+		"payload": form.Content,
 	})
 
 	return iswrite
@@ -94,20 +95,23 @@ func FilerWrite(c *gin.Context) bool {
 // FilerRead 读取文件内容.
 func FilerRead(c *gin.Context) {
 	isread := true //读取文件是否成功
-	path := c.PostForm("path")
+
+	appid := c.Query("APPID")
+	filename := "ScriptFiles/" + appid + ".lua"
 	//文件读取任务是将文件内容读取到内存中。
-	info, err := ioutil.ReadFile(path)
+	info, err := ioutil.ReadFile(filename)
 	if err != nil {
 		fmt.Println(err)
 		isread = false
 	}
-	fmt.Println(info)
+	//fmt.Println(info)
 	result := string(info)
 
 	//返回结果
 	c.JSON(http.StatusOK, gin.H{
-		"content": result,
-		"success": isread,
+		"code": 0,
+		"data": result,
+		"msg":  isread,
 	})
 }
 

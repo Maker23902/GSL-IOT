@@ -1,4 +1,4 @@
--- bisect.lua
+-- bisect.lua 2020
 -- bisection method for solving non-linear equations
  
 delta=1e-6	-- tolerance

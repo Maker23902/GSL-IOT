@@ -7,7 +7,7 @@
                 <el-button type="primary" icon="el-icon-edit">总览</el-button>
                 <el-button type="primary" icon="el-icon-share">设备</el-button>
                 <el-button type="primary" icon="el-icon-menu">载荷格式</el-button>
-                <el-button type="primary" icon="el-icon-edit">运行逻辑</el-button>
+                <el-button type="primary" icon="el-icon-edit">控制策略</el-button>
                 <el-button type="primary" icon="el-icon-upload el-icon--right">数据</el-button>
                 <el-button type="primary" icon="el-icon-setting">设置</el-button>
             </el-button-group>
@@ -47,9 +47,15 @@
                 </span>
             </el-header>
             <div class="pad-style">
-                <div style="margin-bottom:2em"><hexText :value="4343456456465" /> </div>
-                <div style="margin-bottom:2em"><hexText :value="4343456456465" /> </div>
-                <div style="margin-bottom:2em"><hexText visible :value="4343456456465" /> </div>
+                <div style="margin-bottom:2em">
+                    <hexText :value="4343456456465" />
+                </div>
+                <div style="margin-bottom:2em">
+                    <hexText :value="4343456456465" />
+                </div>
+                <div style="margin-bottom:2em">
+                    <hexText visible :value="4343456456465" />
+                </div>
             </div>
         </div>
         <div class="block-wrapper">
@@ -112,12 +118,12 @@
 
 <script>
 import hexText from '@/components/hextext'
-export default{
+export default {
     name: "tmp03",
     components: {
-		hexText
-	},
-    data () {
+        hexText
+    },
+    data() {
         return {
 
         }
@@ -142,7 +148,8 @@ export default{
 }
 
 .button-group-pos {
-    float: right;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .block-wrapper {
